@@ -36,12 +36,12 @@ func (g *DeviceService) CreateDevice(deviceType string) (entities.Device, error)
 		WiFi:           false,
 		Ghz24:          false,
 		Ghz5:           false,
-		Protocol:       "",
-		PrivacyShutter: false,
-		Encryption:     "",
-		IsSecure:       false,
-		InfoLink:       "",
-		Comments:       "",
+		Protocol:       nil,
+		PrivacyShutter: nil,
+		Encryption:     nil,
+		IsSecure:       nil,
+		InfoLink:       nil,
+		Comments:       nil,
 	}
 	err := g.deviceRepository.CreateDevice(&device)
 	return device, err
