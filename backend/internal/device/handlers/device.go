@@ -9,6 +9,7 @@ import (
 type DeviceService interface {
 	GetAll() ([]entities.Device, error)
 	GetDeviceById(id string) (entities.Device, error)
+	GetDevicesByModelOrBrand(query string) ([]entities.Device, error)
 	CreateDevice(deviceType string) (entities.Device, error)
 	UpdateDevice(device *entities.Device, deviceType string) error
 	DeleteDevice(device *entities.Device) error
@@ -23,7 +24,16 @@ func NewDeviceHandler(deviceService DeviceService) *DeviceHandler {
 }
 
 func (g *DeviceHandler) GetAll(c *gin.Context) {
-	devices, err := g.deviceService.GetAll()
+	query, ok := c.GetQuery("query")
+	var (
+		devices []entities.Device
+		err     error
+	)
+	if ok {
+		devices, err = g.deviceService.GetDevicesByModelOrBrand(query)
+	} else {
+		devices, err = g.deviceService.GetAll()
+	}
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, err.Error())
 		return

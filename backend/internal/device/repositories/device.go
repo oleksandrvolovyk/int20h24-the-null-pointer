@@ -25,6 +25,18 @@ func (g *DeviceRepository) GetDeviceById(id string) (entities.Device, error) {
 	return device, err.Error
 }
 
+func (g *DeviceRepository) GetDevicesByModelOrBrand(query string) ([]entities.Device, error) {
+	var devices []entities.Device
+	err := g.db.Model(&entities.Device{}).
+		Find(&devices, "model ilike ? OR brand ilike ?", "%"+query+"%", "%"+query+"%")
+	if len(devices) == 0 {
+		err = g.db.Model(&entities.Device{}).
+			Find(&devices, "levenshtein(model, ?) <= 4 OR levenshtein(brand, ?) <= 4 "+
+				"order by levenshtein(model, ?), levenshtein(brand, ?) limit 10", query, query, query, query)
+	}
+	return devices, err.Error
+}
+
 func (g *DeviceRepository) CreateDevice(device *entities.Device) error {
 	return g.db.Create(&device).Error
 }

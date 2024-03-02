@@ -5,6 +5,7 @@ import "backend/models/entities"
 type DeviceRepository interface {
 	GetAll() ([]entities.Device, error)
 	GetDeviceById(id string) (entities.Device, error)
+	GetDevicesByModelOrBrand(query string) ([]entities.Device, error)
 	CreateDevice(device *entities.Device) error
 	UpdateDevice(device *entities.Device) error
 	DeleteDevice(device *entities.Device) error
@@ -24,6 +25,10 @@ func (g *DeviceService) GetAll() ([]entities.Device, error) {
 
 func (g *DeviceService) GetDeviceById(id string) (entities.Device, error) {
 	return g.deviceRepository.GetDeviceById(id)
+}
+
+func (g *DeviceService) GetDevicesByModelOrBrand(query string) ([]entities.Device, error) {
+	return g.deviceRepository.GetDevicesByModelOrBrand(query)
 }
 
 func (g *DeviceService) CreateDevice(deviceType string) (entities.Device, error) {
