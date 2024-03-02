@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -53,7 +54,7 @@ fun SearchBar(
                 Icon(Icons.Filled.Search, contentDescription = null)
             }
         },
-        modifier = modifier,
+        modifier = modifier.heightIn(50.dp, 200.dp),
         active = active,
         shape = TextFieldDefaults.shape,
         onActiveChange = { active = it },
