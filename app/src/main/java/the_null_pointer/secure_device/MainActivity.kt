@@ -3,13 +3,16 @@ package the_null_pointer.secure_device
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import the_null_pointer.secure_device.ui.NavItem
+import the_null_pointer.secure_device.ui.loading.Loading
+import the_null_pointer.secure_device.ui.result.Result
+import the_null_pointer.secure_device.ui.search.Search
+import the_null_pointer.secure_device.ui.splash.Splash
 import the_null_pointer.secure_device.ui.theme.SecureDeviceTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,30 +20,38 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SecureDeviceTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                val navController = rememberNavController()
+                NavigationGraph(navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SecureDeviceTheme {
-        Greeting("Android")
+fun NavigationGraph(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = NavItem.SplashScreen.screenRoute,
+    ) {
+        composable(
+            route = NavItem.SplashScreen.screenRoute,
+        ) {
+            Splash()
+        }
+        composable(
+            route = NavItem.SearchScreen.screenRoute,
+        ) {
+            Search()
+        }
+        composable(
+            route = NavItem.LoadingScreen.screenRoute,
+        ) {
+            Loading()
+        }
+        composable(
+            route = NavItem.ResultScreen.screenRoute,
+        ) {
+            Result()
+        }
     }
 }
