@@ -31,13 +31,18 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 @Composable
-fun LoadingScreen(onResultReady: () -> Unit) {
+fun LoadingScreen(deviceId:String, onResultReady: (String) -> Unit) {
 
     val circles = listOf(
         remember { Animatable(initialValue = 0f) },
         remember { Animatable(initialValue = 0f) },
         remember { Animatable(initialValue = 0f) }
     )
+
+    LaunchedEffect(true) {
+        delay(2000L) // Delay for 2 seconds
+        onResultReady(deviceId)
+    }
 
     circles.forEachIndexed { index, animatable ->
         LaunchedEffect(key1 = animatable) {

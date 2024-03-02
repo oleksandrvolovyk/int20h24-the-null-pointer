@@ -13,9 +13,12 @@ class LoadingViewModel @Inject constructor(
     private val deviceRepository: DeviceRepository
 ) : ViewModel() {
 
-    // collect if i can move to SearchScreen
 
     private val deviceId = savedStateHandle.get<String>("id")!!
+
+    fun getdeviceId(): String{
+        return deviceId
+    }
 
 
 }

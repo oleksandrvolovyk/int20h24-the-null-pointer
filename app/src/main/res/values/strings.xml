@@ -15,4 +15,23 @@
     <string name="brand">Brand: %1$s</string>
     <string name="model">Model: %1$s</string>
     <string name="analyze_device">Analyze</string>
+    <string name="device_characteristics">Device Characteristics</string>
+    <string name="comments">Comments</string>
+    <string name="device_video">Video</string>
+    <string name="device_wifi">WIFI</string>
+    <string name="device_security_protocol">Security protocol</string>
+    <string name="device_encryption">Encryption</string>
+    <string name="device_info_link">Info link</string>
+    <string name="not_available">Not Available</string>
+    <string name="privacy_shutter">Privacy Shutter</string>
+    <string name="has_privacy_shutter">Has privacy shutter</string>
+    <string name="does_not_have_privacy_shutter">No privacy shutter</string>
+    <string name="no_comments_about_device">No comments about device</string>
+    <string name="is_secure">Success: this device is secure</string>
+    <string name="not_secure">Unfortunately, this device is not secure</string>
+    <string name="not_enough_information_about_security">Unfortunately, we do not have enough information about the device</string>
+    <string name="read_more">Read more</string>
+
+
+
 </resources>
