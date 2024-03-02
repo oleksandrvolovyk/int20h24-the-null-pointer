@@ -41,7 +41,7 @@ fun NavigationGraph(navController: NavHostController) {
             route = NavItem.Splash.screenRoute,
         ) {
             Splash(onDatabaseReady =
-            {navController.navigate(NavItem.Result.screenRoute)}
+            {navController.navigate(NavItem.SearchScreen.screenRoute)}
             )
         }
         composable(

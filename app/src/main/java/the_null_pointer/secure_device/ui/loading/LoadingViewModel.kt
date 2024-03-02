@@ -1,15 +1,21 @@
 package the_null_pointer.secure_device.ui.loading
 
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import the_null_pointer.secure_device.data.DeviceRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class LoadingViewModel @Inject constructor(
-    // private val eventRepository: EventRepository
+    savedStateHandle: SavedStateHandle,
+    private val deviceRepository: DeviceRepository
 ) : ViewModel() {
 
     // collect if i can move to SearchScreen
+
+    private val deviceId = savedStateHandle.get<String>("id")!!
+
 
 }

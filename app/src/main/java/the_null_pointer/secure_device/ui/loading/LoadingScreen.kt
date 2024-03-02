@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
 @Composable
-fun LoadingScreen( onResultReady: () -> Unit) {
+fun LoadingScreen(onResultReady: () -> Unit) {
 
     val circles = listOf(
         remember { Animatable(initialValue = 0f) },
@@ -65,12 +65,14 @@ fun LoadingScreen( onResultReady: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-    ){
-        Column (
+    ) {
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-        ){
-            Text("Checking selected device",
-                fontSize = 23.sp)
+        ) {
+            Text(
+                "Checking selected device",
+                fontSize = 23.sp
+            )
 
             Spacer(modifier = Modifier.height(25.dp))
 
@@ -94,12 +96,7 @@ fun LoadingScreen( onResultReady: () -> Unit) {
             }
 
         }
-
-
     }
-
-
-
 }
 
 

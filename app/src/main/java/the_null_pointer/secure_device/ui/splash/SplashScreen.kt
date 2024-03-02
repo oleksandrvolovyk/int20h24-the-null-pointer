@@ -31,10 +31,10 @@ import the_null_pointer.secure_device.R
 import the_null_pointer.secure_device.ui.loading.Loading
 
 @Composable
-fun SplashScreen( onDatabaseReady: () -> Unit) {
+fun SplashScreen(onDatabaseReady: () -> Unit) {
 
     // if i can move to the DB call
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition(label = "")
     val scale = infiniteTransition.animateFloat(
         0.5f,
         1f,
@@ -62,12 +62,13 @@ fun SplashScreen( onDatabaseReady: () -> Unit) {
             )
             Text(
                 text = "Secure Device",
-                style = TextStyle(color = Color.Black,
-                    fontSize = 26.sp),
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 26.sp
+                ),
                 modifier = Modifier.padding(top = 8.dp)
             )
         }
-
     }
 }
 

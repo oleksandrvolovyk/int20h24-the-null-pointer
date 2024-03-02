@@ -40,88 +40,64 @@ import the_null_pointer.secure_device.R
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun ResultScreen( onBackClicked: () -> Unit){
+fun ResultScreen(onBackClicked: () -> Unit) {
 
     Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(modifier = Modifier.background(color = Color.Red.copy(alpha = 0.2f))){
+        Column(modifier = Modifier.background(color = Color.Red.copy(alpha = 0.2f))) {
 
-            Box(modifier = Modifier.fillMaxWidth()){
+            Box(modifier = Modifier.fillMaxWidth()) {
                 Icon(painter = painterResource(R.drawable.arrow_back),
                     contentDescription = null,
-                    modifier = Modifier.size(28.dp)
+                    modifier = Modifier
+                        .size(28.dp)
                         .clickable { onBackClicked() }
                         .align(Alignment.CenterStart))
-                Text(text = "Model: data from DB",
+                Text(
+                    text = "Model: data from DB",
                     fontSize = 25.sp,
-                    modifier = Modifier.align(Alignment.Center))
-
+                    modifier = Modifier.align(Alignment.Center)
+                )
             }
-
 
             Text(
                 //TODO: fetch from DB
                 text = "Unfortunately, we do not have enough information about the device",
                 modifier = Modifier
-                    .padding(12.dp)
-                ,
+                    .padding(12.dp),
                 fontSize = 25.sp,
                 textAlign = TextAlign.Center
             )
         }
 
-
         Spacer(modifier = Modifier.height(10.dp))
-//        Box(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(horizontal = 12.dp)
-//                .clip(RoundedCornerShape(25))
-//                .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.2f))
-//                .wrapContentSize()
-//                ,
-//            contentAlignment = Alignment.Center
-//        ) {
-//            Text(
-//                //TODO: fetch from DB
-//                text = "Unfortunately, we do not have enough information about the device",
-//                modifier = Modifier
-//                    .padding(12.dp)
-//                ,
-//                fontSize = 25.sp,
-//                textAlign = TextAlign.Center
-//            )
-//        }
-
-        Spacer(modifier = Modifier.size(2.dp))
 
         Box(
             modifier = Modifier
-                //.clip(RoundedCornerShape(10))
+
                 .wrapContentSize()
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.2f))
-            ,
+                .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-
 
             Column(
                 modifier = Modifier
                     .wrapContentSize()
                     .fillMaxWidth()
-            ){
+            ) {
                 Text(
                     //TODO: fetch from DB
-                    text = "Device characteristics",
+                    text = " Device characteristics",
                     modifier = Modifier
-                        .padding(start = 16.dp, top = 10.dp)
+                        .fillMaxWidth()
+//                        .background(color = Color.Gray.copy(alpha = 0.3f))
                     ,
                     fontSize = 25.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Start
+
                 )
                 DesignedText(nameColumnFromBD = "Type", columnText = "type")
                 DesignedText(nameColumnFromBD = "Type", columnText = "Characteristick")
@@ -133,8 +109,6 @@ fun ResultScreen( onBackClicked: () -> Unit){
                 DesignedText(nameColumnFromBD = "Type", columnText = "It is not secure")
                 DesignedText(nameColumnFromBD = "Type", columnText = "type")
 
-
-
                 Spacer(modifier = Modifier.height(5.dp))
 
                 Divider(color = MaterialTheme.colorScheme.outline, thickness = 2.dp)
@@ -143,30 +117,29 @@ fun ResultScreen( onBackClicked: () -> Unit){
 
                 Text(
                     //TODO: fetch from DB
-                    text = "Coments",
+                    text = " Coments",
                     modifier = Modifier
-                        .padding(start = 16.dp)
+                        .fillMaxWidth()
+//                        .background(color = Color.Gray.copy(alpha = 0.3f))
                     ,
                     fontSize = 25.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Start
                 )
 
-                Column( modifier = Modifier
-                    .verticalScroll( enabled = true, state = rememberScrollState())){
+                Column(
+                    modifier = Modifier
+                        .verticalScroll(enabled = true, state = rememberScrollState())
+                ) {
                     Text(
                         text = "Your comments here",
                         modifier = Modifier
-                            .padding(start = 25.dp, bottom = 10.dp)
-                        ,
+                            .padding(start = 25.dp, bottom = 10.dp),
                         fontSize = 20.sp,
                         textAlign = TextAlign.Start,
                         maxLines = 2
                     )
                 }
-
-
-
-
+                Divider(color = MaterialTheme.colorScheme.outline, thickness = 1.dp)
 
             }
 
@@ -175,25 +148,36 @@ fun ResultScreen( onBackClicked: () -> Unit){
         //TODO: fetch secure or not
 
         var secure = true
-        if(secure){
-            Box(modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(top = 10.dp),
-                contentAlignment = Alignment.BottomCenter){
-                Button( shape = RoundedCornerShape(0), modifier = Modifier.fillMaxWidth(),  onClick = { /*TODO*/ }) {
-                    Text("Read more link",
-                        fontSize = 20.sp)
+        if (secure) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(top = 10.dp)
+                    .offset(y = (5).dp),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Button(
+                    shape = RoundedCornerShape(0),
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { /*TODO*/ }) {
+                    Text(
+                        "Read more link",
+                        fontSize = 20.sp
+                    )
 
                 }
-
-
             }
-
         }
     }
 }
+
 @Composable
-fun DesignedText(nameColumnFromBD: String, columnText:String){
-    Row(modifier = Modifier
-        .padding(start = 25.dp, top = 5.dp, end = 10.dp)) {
+fun DesignedText(nameColumnFromBD: String, columnText: String) {
+    Row(
+        modifier = Modifier
+            .padding(start = 25.dp, top = 5.dp, end = 10.dp)
+    ) {
         Box(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = nameColumnFromBD,
@@ -208,12 +192,8 @@ fun DesignedText(nameColumnFromBD: String, columnText:String){
                 textAlign = TextAlign.End,
                 fontSize = 19.sp
             )
-
-
         }
-
     }
-
 }
 
 @Preview
