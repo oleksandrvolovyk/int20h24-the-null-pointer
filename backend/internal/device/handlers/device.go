@@ -37,7 +37,7 @@ func (g *DeviceHandler) GetById(c *gin.Context) {
 
 	device, err := g.deviceService.GetDeviceById(id)
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, err.Error())
+		c.IndentedJSON(http.StatusNotFound, err.Error())
 		return
 	}
 	c.JSON(http.StatusOK, device)
