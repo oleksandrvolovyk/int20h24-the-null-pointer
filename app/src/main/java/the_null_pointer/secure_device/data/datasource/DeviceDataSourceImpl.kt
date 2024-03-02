@@ -4,7 +4,7 @@ import the_null_pointer.secure_device.data.model.Device
 
 class DeviceDataSourceImpl(
     private val deviceApi: DeviceApi
-): DeviceDataSource {
+) : DeviceDataSource {
     override fun search(query: String): List<Device> {
         return try {
             val call = deviceApi.search(query)
@@ -12,7 +12,7 @@ class DeviceDataSourceImpl(
             val response = call.execute()
 
             if (response.isSuccessful && response.body() != null) {
-                response.body()!!
+                response.body()!!.cleanComments()
             } else {
                 emptyList()
             }
@@ -28,7 +28,7 @@ class DeviceDataSourceImpl(
             val response = call.execute()
 
             if (response.isSuccessful) {
-                response.body()
+                response.body()?.cleanComments()
             } else {
                 null
             }
@@ -44,12 +44,22 @@ class DeviceDataSourceImpl(
             val response = call.execute()
 
             if (response.isSuccessful && response.body() != null) {
-                response.body()!!
+                response.body()!!.cleanComments()
             } else {
                 emptyList()
             }
         } catch (t: Throwable) {
             emptyList()
         }
+    }
+
+    private fun List<Device>.cleanComments(): List<Device> {
+        return this.map {
+            it.copy(comments = it.comments?.replace("\\n", "\n"))
+        }
+    }
+
+    private fun Device.cleanComments(): Device {
+        return this.copy(comments = this.comments?.replace("\\n", "\n"))
     }
 }

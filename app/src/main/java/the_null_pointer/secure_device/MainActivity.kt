@@ -51,15 +51,19 @@ fun NavigationGraph(navController: NavHostController) {
         composable(
             route = NavItem.Search.screenRoute,
         ) {
-            Search(onDeviceClick = {navController.navigate(NavItem.Loading.screenRoute + "/" + it.id) })
+            Search(onDeviceClick = { navController.navigate(NavItem.Loading.screenRoute + "/" + it.id) })
         }
         composable(
             route = NavItem.Loading.screenRoute + "/{id}",
         ) {
-            Loading(onResultReady = {deviceId -> navController.navigate(NavItem.Result.screenRoute + "/" + deviceId)})
+            Loading(onResultReady = { deviceId ->
+                navController.navigate(NavItem.Result.screenRoute + "/" + deviceId) {
+                    popUpTo(NavItem.Search.screenRoute)
+                }
+            })
         }
         composable(
-            route = NavItem.Result.screenRoute+ "/{id}",
+            route = NavItem.Result.screenRoute + "/{id}",
         ) {
             Result(onBackClicked = {
                 navController.navigate(NavItem.Search.screenRoute) {
