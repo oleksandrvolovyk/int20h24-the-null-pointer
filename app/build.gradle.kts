@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    id("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -66,4 +69,24 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    val navVersion = "2.7.7"
+
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Retrofit with Jackson
+    val retrofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.5")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
