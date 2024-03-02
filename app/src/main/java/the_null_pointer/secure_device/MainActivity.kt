@@ -11,11 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import the_null_pointer.secure_device.ui.NavItem
 import the_null_pointer.secure_device.ui.loading.Loading
-import the_null_pointer.secure_device.ui.loading.LoadingScreen
 import the_null_pointer.secure_device.ui.result.Result
 import the_null_pointer.secure_device.ui.search.Search
 import the_null_pointer.secure_device.ui.splash.Splash
-import the_null_pointer.secure_device.ui.splash.SplashScreen
 import the_null_pointer.secure_device.ui.theme.SecureDeviceTheme
 
 @AndroidEntryPoint
@@ -40,28 +38,36 @@ fun NavigationGraph(navController: NavHostController) {
         composable(
             route = NavItem.Splash.screenRoute,
         ) {
-            Splash(onDatabaseReady =
-            {navController.navigate(NavItem.SearchScreen.screenRoute)}
+            Splash(
+                onDatabaseReady = {
+                    navController.navigate(NavItem.Search.screenRoute) {
+                        popUpTo(NavItem.Splash.screenRoute) {
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
         composable(
-            route = NavItem.SearchScreen.screenRoute,
+            route = NavItem.Search.screenRoute,
         ) {
             Search()
         }
         composable(
             route = NavItem.Loading.screenRoute,
         ) {
-            Loading(onResultReady = {navController.navigate(NavItem.Result.screenRoute)})
+            Loading(onResultReady = { navController.navigate(NavItem.Result.screenRoute) })
         }
         composable(
             route = NavItem.Result.screenRoute,
         ) {
-            Result(onBackClicked = {navController.navigate(NavItem.SearchScreen.screenRoute){
-                popUpTo(NavItem.SearchScreen.screenRoute) {
-                    inclusive = true
+            Result(onBackClicked = {
+                navController.navigate(NavItem.Search.screenRoute) {
+                    popUpTo(NavItem.Search.screenRoute) {
+                        inclusive = true
+                    }
                 }
-            } })
+            })
         }
     }
 }
