@@ -7,7 +7,7 @@ import retrofit2.http.Query
 import the_null_pointer.secure_device.data.model.Device
 
 interface DeviceApi {
-    @GET("search")
+    @GET("device")
     fun search(@Query("query") query: String): Call<List<Device>>
 
     @GET("device")
