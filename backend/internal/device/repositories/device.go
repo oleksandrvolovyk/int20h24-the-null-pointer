@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"backend/packages/models/entities"
+	"backend/models/entities"
 	"gorm.io/gorm"
 )
 

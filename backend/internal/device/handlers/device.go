@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"backend/packages/models/entities"
+	"backend/models/entities"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -29,4 +29,16 @@ func (g *DeviceHandler) GetAll(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, devices)
+}
+
+func (g *DeviceHandler) GetById(c *gin.Context) {
+	// Get the ID from the URL parameter
+	id := c.Param("id")
+
+	device, err := g.deviceService.GetDeviceById(id)
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, device)
 }

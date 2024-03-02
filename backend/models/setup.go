@@ -1,7 +1,7 @@
 package models
 
 import (
-	"backend/packages/models/entities"
+	"backend/models/entities"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"os"

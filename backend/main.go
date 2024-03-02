@@ -1,8 +1,8 @@
 package main
 
 import (
-	"backend/packages/internal/device"
-	"backend/packages/models"
+	"backend/internal/device"
+	"backend/models"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"

@@ -1,6 +1,6 @@
 package services
 
-import "backend/packages/models/entities"
+import "backend/models/entities"
 
 type DeviceRepository interface {
 	GetAll() ([]entities.Device, error)

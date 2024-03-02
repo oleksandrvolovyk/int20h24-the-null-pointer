@@ -1,9 +1,9 @@
 package device
 
 import (
-	"backend/packages/internal/device/handlers"
-	"backend/packages/internal/device/repositories"
-	"backend/packages/internal/device/services"
+	"backend/internal/device/handlers"
+	"backend/internal/device/repositories"
+	"backend/internal/device/services"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
@@ -14,4 +14,5 @@ func Device(router *gin.RouterGroup, db *gorm.DB) {
 	deviceHandler := handlers.NewDeviceHandler(deviceService)
 
 	router.GET("/device", deviceHandler.GetAll)
+	router.GET("/device/:id", deviceHandler.GetById)
 }
