@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
@@ -25,6 +26,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -74,33 +76,35 @@ fun ResultScreen(uiState: ResultUiState, onBackClicked: () -> Unit) {
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),
         ) {
-            Column(modifier = Modifier.background(color = SecureState(device = uiState.device).first)) {
 
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    Icon(
-                        Icons.Default.KeyboardArrowLeft,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clickable { onBackClicked() }
-                            .align(Alignment.CenterStart)
-                            .padding(start = 8.dp)
-                    )
+            Surface(shadowElevation = 9.dp){
+                Column(modifier = Modifier.background(color = SecureState(device = uiState.device).first)) {
+
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        Icon(
+                            Icons.Default.KeyboardArrowLeft,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(48.dp)
+                                .clickable { onBackClicked() }
+                                .align(Alignment.CenterStart)
+                                .padding(start = 8.dp)
+                        )
+                        Text(
+                            text = stringResource(id = R.string.model, uiState.device?.model ?: ""),
+                            fontSize = 20.sp,
+                            modifier = Modifier.align(Alignment.Center)
+                        )
+                    }
                     Text(
-                        text = stringResource(id = R.string.model, uiState.device?.model ?: ""),
-                        fontSize = 20.sp,
-                        modifier = Modifier.align(Alignment.Center)
+                        text = SecureState(device = uiState.device).second,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp),
+                        fontSize = 25.sp,
+                        textAlign = TextAlign.Center
                     )
                 }
-
-                Text(
-                    text = SecureState(device = uiState.device).second,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    fontSize = 25.sp,
-                    textAlign = TextAlign.Center
-                )
             }
 
             Spacer(modifier = Modifier.height(10.dp))
