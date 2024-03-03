@@ -4,6 +4,7 @@ plugins {
 
     id("org.jetbrains.kotlin.kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -84,6 +85,9 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-jackson:$retrofitVersion")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.5")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
 }
 
 // Allow references to generated code
