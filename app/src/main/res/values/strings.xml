@@ -31,7 +31,7 @@
     <string name="not_secure">Unfortunately, this device is not secure</string>
     <string name="not_enough_information_about_security">Unfortunately, we do not have enough information about the device</string>
     <string name="read_more">Read more</string>
-
+    <string name="no_devices_found">No devices found!\nTry changing your query or filters</string>
 
 
 </resources>

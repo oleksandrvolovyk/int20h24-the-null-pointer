@@ -1,5 +1,6 @@
 package the_null_pointer.secure_device.ui.search
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import the_null_pointer.secure_device.R
@@ -112,6 +114,20 @@ fun SearchScreen(
                     modifier = Modifier.fillMaxWidth(),
                     device = it,
                     onAnalyzeButtonClick = onDeviceClick
+                )
+            }
+        }
+
+        if (uiState.devices.isEmpty()) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    modifier = Modifier.fillMaxSize(),
+                    text = stringResource(R.string.no_devices_found),
+                    textAlign = TextAlign.Center,
+                    fontSize = 24.sp
                 )
             }
         }
