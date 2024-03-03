@@ -5,16 +5,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Divider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import the_null_pointer.secure_device.R
 import the_null_pointer.secure_device.data.model.Device
 import the_null_pointer.secure_device.ui.search.widgets.ExpandableDeviceCard
@@ -32,7 +36,7 @@ fun SearchScreen(
     onSelectedDeviceModelChange: (String?) -> Unit,
     onDeviceClick: (Device) -> Unit
 ) {
-    Column {
+    Column(Modifier.fillMaxSize()) {
         SearchBar(
             modifier = Modifier.fillMaxWidth(),
             searchHints = uiState.searchHints,
@@ -44,7 +48,8 @@ fun SearchScreen(
 
         Text(
             modifier = Modifier.padding(horizontal = 8.dp),
-            text = stringResource(R.string.filters)
+            text = stringResource(R.string.filters),
+            fontSize = 20.sp
         )
 
         Spacer(Modifier.height(4.dp))
@@ -84,11 +89,16 @@ fun SearchScreen(
             )
         }
 
+        Spacer(Modifier.height(8.dp))
+
+        Divider(color = MaterialTheme.colorScheme.outline, thickness = 1.dp)
+
         Spacer(Modifier.height(4.dp))
 
         Text(
             modifier = Modifier.padding(horizontal = 8.dp),
-            text = stringResource(R.string.devices)
+            text = stringResource(R.string.devices),
+            fontSize = 20.sp
         )
 
         Spacer(Modifier.height(4.dp))

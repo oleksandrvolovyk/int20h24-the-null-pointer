@@ -15,6 +15,10 @@ import the_null_pointer.secure_device.ui.result.Result
 import the_null_pointer.secure_device.ui.search.Search
 import the_null_pointer.secure_device.ui.splash.Splash
 import the_null_pointer.secure_device.ui.theme.SecureDeviceTheme
+import the_null_pointer.secure_device.ui.uitl.TransitionUtil.defaultEnterTransition
+import the_null_pointer.secure_device.ui.uitl.TransitionUtil.defaultExitTransition
+import the_null_pointer.secure_device.ui.uitl.TransitionUtil.defaultPopEnterTransition
+import the_null_pointer.secure_device.ui.uitl.TransitionUtil.defaultPopExitTransition
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -50,11 +54,19 @@ fun NavigationGraph(navController: NavHostController) {
         }
         composable(
             route = NavItem.Search.screenRoute,
+            enterTransition = { defaultEnterTransition },
+            exitTransition = { defaultExitTransition },
+            popEnterTransition = { defaultPopEnterTransition },
+            popExitTransition = { defaultPopExitTransition }
         ) {
             Search(onDeviceClick = { navController.navigate(NavItem.Loading.screenRoute + "/" + it.id) })
         }
         composable(
             route = NavItem.Loading.screenRoute + "/{id}",
+            enterTransition = { defaultEnterTransition },
+            exitTransition = { defaultExitTransition },
+            popEnterTransition = { defaultPopEnterTransition },
+            popExitTransition = { defaultPopExitTransition }
         ) {
             Loading(onResultReady = { deviceId ->
                 navController.navigate(NavItem.Result.screenRoute + "/" + deviceId) {
@@ -64,13 +76,13 @@ fun NavigationGraph(navController: NavHostController) {
         }
         composable(
             route = NavItem.Result.screenRoute + "/{id}",
+            enterTransition = { defaultEnterTransition },
+            exitTransition = { defaultExitTransition },
+            popEnterTransition = { defaultPopEnterTransition },
+            popExitTransition = { defaultPopExitTransition }
         ) {
             Result(onBackClicked = {
-                navController.navigate(NavItem.Search.screenRoute) {
-                    popUpTo(NavItem.Search.screenRoute) {
-                        inclusive = true
-                    }
-                }
+                navController.popBackStack(NavItem.Search.screenRoute, inclusive = false)
             })
         }
     }
