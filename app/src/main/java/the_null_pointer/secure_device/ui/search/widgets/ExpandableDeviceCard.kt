@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import the_null_pointer.secure_device.R
@@ -84,21 +85,45 @@ fun ExpandableDeviceCard(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     if (device.hasWifi && device.has24GhzWifi && device.has5GhzWifi) {
-                        Text(stringResource(R.string.wifi24and5))
+                        Text(
+                            modifier = modifier.weight(1f),
+                            text = stringResource(R.string.wifi24and5),
+                            textAlign = TextAlign.Center
+                        )
                     } else if (device.hasWifi && device.has24GhzWifi) {
-                        Text(stringResource(R.string.wifi24))
+                        Text(
+                            modifier = modifier.weight(1f),
+                            text = stringResource(R.string.wifi24),
+                            textAlign = TextAlign.Center
+                        )
                     } else if (device.hasWifi && device.has5GhzWifi) {
-                        Text(stringResource(R.string.wifi5))
+                        Text(
+                            modifier = modifier.weight(1f),
+                            text = stringResource(R.string.wifi5),
+                            textAlign = TextAlign.Center
+                        )
                     } else if (!device.hasWifi) {
-                        Text(stringResource(R.string.no_wifi))
+                        Text(
+                            modifier = modifier.weight(1f),
+                            text = stringResource(R.string.no_wifi),
+                            textAlign = TextAlign.Center
+                        )
                     }
 
                     Spacer(Modifier.width(16.dp))
 
                     if (device.hasVideo) {
-                        Text(stringResource(R.string.has_video))
+                        Text(
+                            modifier = modifier.weight(1f),
+                            text = stringResource(R.string.has_video),
+                            textAlign = TextAlign.Center
+                        )
                     } else {
-                        Text(stringResource(R.string.does_not_have_video))
+                        Text(
+                            modifier = modifier.weight(1f),
+                            text = stringResource(R.string.does_not_have_video),
+                            textAlign = TextAlign.Center
+                        )
                     }
                 }
 

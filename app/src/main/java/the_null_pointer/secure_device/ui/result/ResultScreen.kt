@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import the_null_pointer.secure_device.R
 import the_null_pointer.secure_device.data.model.Device
 import the_null_pointer.secure_device.ui.result.widget.LinkifyText
+import the_null_pointer.secure_device.ui.uitl.StringUtil.capitalize
 
 @Composable
 fun ResultScreen(uiState: ResultUiState, onBackClicked: () -> Unit) {
@@ -134,7 +135,7 @@ fun ResultScreen(uiState: ResultUiState, onBackClicked: () -> Unit) {
                     )
                     DesignedText(
                         nameColumnFromBD = stringResource(id = R.string.device_type),
-                        columnText = uiState.device?.type ?: ""
+                        columnText = uiState.device?.type?.capitalize() ?: ""
                     )
                     DesignedText(
                         nameColumnFromBD = stringResource(id = R.string.device_brand),
